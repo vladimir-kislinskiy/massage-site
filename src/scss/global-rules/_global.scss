@@ -1,0 +1,24 @@
+@import "custom/scroll";
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.main {
+  flex: 1 1 auto;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1330px;
+  padding: 0 15px;
+}
+
+body {
+  background: var(--lp-bg-primary);
+  color: var(--lp-text);
+  transition: var(--lp-theme-transition);
+}

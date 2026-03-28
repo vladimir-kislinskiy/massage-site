@@ -1,0 +1,220 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: transparent;
+  padding: 0;
+  transition:
+    background 0.5s var(--lp-ease-smooth),
+    box-shadow 0.5s var(--lp-ease-smooth),
+    backdrop-filter 0.5s ease;
+
+  &.is-scrolled {
+    background: var(--lp-header-scrolled);
+    backdrop-filter: blur(18px) saturate(1.15);
+    -webkit-backdrop-filter: blur(18px) saturate(1.15);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.06),
+      0 12px 40px rgba(0, 0, 0, 0.18);
+  }
+
+  &__progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0%;
+    background: linear-gradient(
+      90deg,
+      var(--lp-accent),
+      var(--lp-accent-light)
+    );
+    transition: none;
+    z-index: 101;
+
+    html:has(.nav__menu.is-active) & {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+}
+
+.nav {
+  @include flex-all-sb;
+  height: 64px;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--lp-dark);
+    font-family: var(--lp-font-heading);
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    transition: color 0.35s var(--lp-ease-smooth);
+
+    .is-scrolled & {
+      color: #fff;
+    }
+  }
+
+  &__menu {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    li {
+      height: 100%;
+    }
+  }
+
+  &__link {
+    color: var(--lp-text);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    transition:
+      color 0.5s var(--lp-ease-smooth),
+      background-color 0.5s var(--lp-ease-smooth);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    [data-theme="dark"] & {
+      color: rgba(255, 255, 255, 0.75);
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+      }
+    }
+
+    .is-scrolled & {
+      color: rgba(255, 255, 255, 0.8);
+
+      &:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.12);
+      }
+    }
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    width: 24px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: none;
+    padding: 0;
+    z-index: 102; /* ensure button is above the mobile menu */
+
+    span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--lp-dark);
+      border-radius: 1px;
+      transition: all 0.35s var(--lp-ease-smooth);
+    }
+
+    [data-theme="dark"] & span {
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .is-scrolled & span {
+      background: #fff;
+    }
+
+    &.is-active {
+      span {
+        background: #fff;
+      }
+      span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      span:nth-child(2) {
+        opacity: 0;
+      }
+      span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+    }
+  }
+}
+
+.theme-toggle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(31, 36, 46, 0.12);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lp-text);
+  transition:
+    background 0.4s var(--lp-ease-smooth),
+    border-color 0.4s var(--lp-ease-smooth),
+    color 0.4s var(--lp-ease-smooth),
+    transform 0.4s var(--lp-ease-smooth);
+
+  &:hover {
+    transform: scale(1.1) rotate(15deg);
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  &__sun {
+    display: block;
+  }
+
+  &__moon {
+    display: none;
+  }
+
+  [data-theme="dark"] & {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.8);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+  }
+
+  [data-theme="dark"] &__sun {
+    display: none;
+  }
+
+  [data-theme="dark"] &__moon {
+    display: block;
+  }
+
+  .is-scrolled & {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.85);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  }
+}

@@ -1,0 +1,43 @@
+.features {
+  position: relative;
+  z-index: 3;
+  padding: 60px 0;
+  background: var(--lp-band-white);
+
+  &__grid {
+    display: flex;
+    justify-content: center;
+    gap: 56px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__icon {
+    width: 44px;
+    height: 44px;
+    background: var(--lp-accent);
+    border-radius: 12px;
+    @include flex-all-center;
+    flex-shrink: 0;
+    color: #fff;
+  }
+
+  &__title {
+    font-family: var(--lp-font-heading);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--lp-text);
+    letter-spacing: -0.02em;
+  }
+
+  &__text {
+    font-size: 13px;
+    color: var(--lp-text-muted);
+    line-height: 1.5;
+    margin-top: 2px;
+  }
+}

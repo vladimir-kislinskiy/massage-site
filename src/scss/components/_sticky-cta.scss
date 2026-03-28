@@ -1,0 +1,50 @@
+.sticky-cta {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 90;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.9);
+  transition:
+    opacity 0.5s var(--lp-ease-smooth),
+    visibility 0.5s var(--lp-ease-smooth),
+    transform 0.5s var(--lp-ease-smooth);
+
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(
+      135deg,
+      var(--lp-accent),
+      var(--lp-accent-dark)
+    );
+    color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 8px 32px var(--lp-accent-glow);
+    cursor: pointer;
+    border: none;
+    transition:
+      transform 0.4s var(--lp-ease-smooth),
+      box-shadow 0.4s var(--lp-ease-smooth);
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px var(--lp-accent-glow);
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}

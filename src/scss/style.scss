@@ -1,0 +1,20 @@
+@import "./global-rules/vars";
+@import "./global-rules/mixins";
+@import "./global-rules/fonts";
+@import "./global-rules/reset";
+@import "./global-rules/global";
+
+@import "./components/header";
+@import "./components/footer";
+@import "./components/buttons";
+@import "./components/hero";
+@import "./components/stats";
+@import "./components/services";
+@import "./components/service-modal";
+@import "./components/about";
+@import "./components/therapists";
+@import "./components/testimonials";
+@import "./components/gallery";
+@import "./components/billing";
+@import "./components/sticky-cta";
+@import "./components/animations";
