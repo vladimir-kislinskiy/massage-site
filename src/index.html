@@ -1,23 +1,23 @@
 <!doctype html>
 <html lang="en">
-  @include('partials/head.html', { 'title': 'RTM — Premium Massage Therapy in Edmonton, AB' })
+  @@include('partials/head.html', { 'title': 'RTM — Premium Massage Therapy in Edmonton, AB' })
 
   <body>
     <div class="wrapper">
-      @include('partials/header.html')
+      @@include('partials/header.html')
 
       <main class="main">
-        @include('partials/sections/hero.html')
-        @include('partials/sections/stats.html')
-        @include('partials/sections/services.html')
-        @include('partials/sections/therapists.html')
-        @include('partials/sections/about.html')
-        @include('partials/sections/gallery.html')
-        @include('partials/sections/cta.html')
-        @include('partials/sections/testimonials.html')
+        @@include('partials/sections/hero.html')
+        @@include('partials/sections/stats.html')
+        @@include('partials/sections/services.html')
+        @@include('partials/sections/therapists.html')
+        @@include('partials/sections/about.html')
+        @@include('partials/sections/gallery.html')
+        @@include('partials/sections/cta.html')
+        @@include('partials/sections/testimonials.html')
       </main>
 
-      @include('partials/footer.html')
+      @@include('partials/footer.html')
     </div>
 
     <div class="sticky-cta" id="stickyCta">
@@ -35,6 +35,6 @@
       </a>
     </div>
 
-    @include('partials/connected/scripts.html')
+    @@include('partials/connected/scripts.html')
   </body>
 </html>

@@ -68,7 +68,7 @@ const htmlInclude = () => {
 	return src(["./src/*.html", "!./src/_*.html", "!./src/templates.html"])
 		.pipe(
 			fileInclude({
-				prefix: "@",
+				prefix: "@@",
 				basepath: "@file",
 				context: content,
 			}),
