@@ -39,8 +39,9 @@ const scriptsBackend = () => {
 };
 
 const resources = () => {
-	return src("./src/resources/**")
-		.pipe(dest("./dist"))
+	src("./src/resources/**").pipe(dest("./dist"));
+	return src("./src/admin/**")
+		.pipe(dest("./dist/admin"))
 		.pipe(browserSync.stream());
 };
 
