@@ -63,11 +63,13 @@ const images = () => {
 };
 
 const htmlInclude = () => {
+	const content = JSON.parse(readFileSync("./src/data/content.json", "utf8"));
 	return src(["./src/*.html", "!./src/_*.html", "!./src/templates.html"])
 		.pipe(
 			fileInclude({
 				prefix: "@",
 				basepath: "@file",
+				context: content,
 			}),
 		)
 		.pipe(dest("./dist"))
@@ -88,6 +90,7 @@ const watchFiles = () => {
 	watch("./src/partials/*.html", htmlInclude);
 	watch("./src/partials/connected/*.html", htmlInclude);
 	watch("./src/partials/sections/*.html", htmlInclude);
+	watch("./src/data/content.json", htmlInclude);
 	watch("./src/*.html", htmlInclude);
 	watch("./src/resources/**", resources);
 	watch("./src/img/*.{jpg,jpeg,png,svg,webp}", images);
