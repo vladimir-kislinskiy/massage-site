@@ -1,39 +1,17 @@
 <section class="gallery" id="gallery">
   <div class="container">
     <div class="section-head anim-on-scroll">
-      <h2 class="section-head__title">Our Space</h2>
-      <p class="section-head__text">
-        Take a visual tour of our tranquil Edmonton studio designed for your
-        ultimate comfort.
-      </p>
+      <h2 class="section-head__title">@@gallery_title</h2>
+      <p class="section-head__text">@@gallery_text</p>
     </div>
     <div class="gallery__slider anim-on-scroll">
       <div class="swiper gallery-swiper">
         <div class="swiper-wrapper">
+          @@for (var i = 0; i < gallery.length; i++) {
           <div class="swiper-slide gallery__item">
-            <img src="./img/hero.webp" alt="Spa Treatment Room" width="600" height="400" loading="lazy">
+            <img src="`+gallery[i].image+`" alt="`+gallery[i].alt+`" width="600" height="400" loading="lazy">
           </div>
-          <div class="swiper-slide gallery__item">
-            <img src="./img/service-relaxation.webp" alt="Aromatherapy Setup" width="600" height="400" loading="lazy">
-          </div>
-          <div class="swiper-slide gallery__item">
-            <img src="./img/service-hot-stone.webp" alt="Hot Stone Therapy" width="600" height="400" loading="lazy">
-          </div>
-          <div class="swiper-slide gallery__item">
-            <img src="./img/about.webp" alt="Massage Session" width="600" height="400" loading="lazy">
-          </div>
-          <div class="swiper-slide gallery__item">
-            <img
-              src="./img/service-deep-tissue.webp"
-              alt="Deep Tissue Massage"
-              width="600"
-              height="400"
-              loading="lazy"
-            >
-          </div>
-          <div class="swiper-slide gallery__item">
-            <img src="./img/service-sports.webp" alt="Sports Massage" width="600" height="400" loading="lazy">
-          </div>
+          }
         </div>
       </div>
       <div class="swiper-button-prev gallery-prev"></div>

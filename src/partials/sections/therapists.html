@@ -2,32 +2,18 @@
   <div class="container">
     <div class="therapists__grid">
       <div class="therapists__image anim-on-scroll" data-anim="fade-left">
-        <img src="./img/about.webp" alt="Yana Shtapenko">
+        <img src="@@therapist_image" alt="@@therapist_title">
       </div>
       <div class="therapists__content anim-on-scroll" data-anim="fade-right">
-        <h2 class="therapists__title">Meet Your Therapist</h2>
-        <p class="therapists__text">
-          Hello! I am Yana Shtapenko, the founder and lead Registered Massage
-          Therapist at RTM Studio.
-        </p>
-        <p class="therapists__text">
-          My passion is helping you achieve a pain-free, relaxed lifestyle
-          through dedicated treatment plans tailored to your specific needs. I
-          specialize in deep tissue and therapeutic techniques.
-        </p>
+        <h2 class="therapists__title">@@therapist_title</h2>
+        <p class="therapists__text">@@therapist_intro</p>
+        <p class="therapists__text">@@therapist_main</p>
         <ul class="therapists__list">
+          @@for (var i = 0; i < therapist_bullets.length; i++) {
           <li class="anim-on-scroll" data-anim="fade-right">
-            Registered Massage Therapist (RMT)
+            `+therapist_bullets[i].text+`
           </li>
-          <li class="anim-on-scroll" data-anim="fade-right">
-            Specializes in deep tissue massage
-          </li>
-          <li class="anim-on-scroll" data-anim="fade-right">
-            Focus on therapeutic recovery
-          </li>
-          <li class="anim-on-scroll" data-anim="fade-right">
-            Passionate about holistic wellness
-          </li>
+          }
         </ul>
       </div>
     </div>

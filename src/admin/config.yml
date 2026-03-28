@@ -18,3 +18,55 @@ collections:
           - { label: "Текст Hero", name: "hero_text", widget: "text" }
           - { label: "О нас - Заголовок", name: "about_title", widget: "string" }
           - { label: "О нас - Текст", name: "about_text", widget: "markdown" }
+          - label: "Статистика"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Число", name: "count", widget: "string" }
+              - { label: "Подпись", name: "label", widget: "string" }
+          - { label: "Услуги - Заголовок", name: "services_title", widget: "string" }
+          - { label: "Услуги - Подзаголовок", name: "services_text", widget: "text" }
+          - label: "Услуги (Список)"
+            name: "services"
+            widget: "list"
+            fields:
+              - { label: "Картинка", name: "image", widget: "image" }
+              - { label: "Название", name: "title", widget: "string" }
+              - { label: "Краткое описание", name: "short_description", widget: "string" }
+              - { label: "Полное описание (для модалки)", name: "description", widget: "text" }
+          - { label: "Специалист - Фото", name: "therapist_image", widget: "image" }
+          - { label: "Специалист - Заголовок", name: "therapist_title", widget: "string" }
+          - { label: "Специалист - Вступление", name: "therapist_intro", widget: "text" }
+          - { label: "Специалист - Основной Текст", name: "therapist_main", widget: "text" }
+          - label: "Специалист - Преимущества"
+            name: "therapist_bullets"
+            widget: "list"
+            fields:
+              - { label: "Навык", name: "text", widget: "string" }
+          - { label: "Отзывы - Заголовок", name: "testimonials_title", widget: "string" }
+          - { label: "Отзывы - Подзаголовок", name: "testimonials_text", widget: "text" }
+          - label: "Отзывы (Список)"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - { label: "Текст отзыва", name: "text", widget: "text" }
+              - { label: "Инициалы клиента (Аватар)", name: "initials", widget: "string" }
+              - { label: "Имя клиента", name: "name", widget: "string" }
+              - { label: "Тип массажа / Инфо", name: "info", widget: "string" }
+          - { label: "Галерея - Заголовок", name: "gallery_title", widget: "string" }
+          - { label: "Галерея - Подзаголовок", name: "gallery_text", widget: "text" }
+          - label: "Галерея - Фотографии"
+            name: "gallery"
+            widget: "list"
+            fields:
+              - { label: "Фото", name: "image", widget: "image" }
+              - { label: "Описание (Alt)", name: "alt", widget: "string" }
+          - { label: "Бренд (Текст в подвале)", name: "footer_brand", widget: "string" }
+          - { label: "Краткое описание (Подвал)", name: "footer_desc", widget: "text" }
+          - { label: "Адрес", name: "contact_address", widget: "string" }
+          - { label: "Ссылка на Google Карты", name: "contact_map_url", widget: "string" }
+          - { label: "Телефон", name: "contact_phone", widget: "string" }
+          - { label: "Email", name: "contact_email", widget: "string" }
+          - { label: "Часы работы", name: "contact_hours", widget: "string" }
+          - { label: "Код карты (iframe src)", name: "contact_map_embed", widget: "string" }
+

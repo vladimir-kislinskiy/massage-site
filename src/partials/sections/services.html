@@ -1,64 +1,21 @@
 <section class="services" id="services">
 	<div class="container">
 		<div class="section-head anim-on-scroll">
-			<h2 class="section-head__title">Our Services</h2>
-			<p class="section-head__text">Professional therapeutic treatments designed to restore balance, relieve tension, and promote overall wellness.</p>
+			<h2 class="section-head__title">@@services_title</h2>
+			<p class="section-head__text">@@services_text</p>
 		</div>
 		<div class="services__grid">
-			<div class="services__card anim-on-scroll" data-anim="fade-scale" data-service-img="./img/service-deep-tissue.webp" data-service-title="Deep Tissue" data-service-desc="Targeted pressure for chronic tension to relieve muscle pain and stiffness. This massage focuses on the deepest layers of muscle tissue, tendons, and fascia.">
+			@@for (var i = 0; i < services.length; i++) {
+			<div class="services__card anim-on-scroll" data-anim="fade-scale" data-service-img="`+services[i].image+`" data-service-title="`+services[i].title+`" data-service-desc="`+services[i].description+`">
 				<div class="services__card-img">
-					<img src="./img/service-deep-tissue.webp" alt="Deep Tissue Massage">
+					<img src="`+services[i].image+`" alt="`+services[i].title+`">
 				</div>
 				<div class="services__card-body">
-					<h3>Deep Tissue</h3>
-					<p>Targeted pressure for chronic tension</p>
+					<h3>`+services[i].title+`</h3>
+					<p>`+services[i].short_description+`</p>
 				</div>
 			</div>
-			<div class="services__card anim-on-scroll" data-anim="fade-scale" data-service-img="./img/service-relaxation.webp" data-service-title="Aromatherapy" data-service-desc="Essential oils meet therapeutic touch. Enjoy a relaxing massage combined with the use of highly concentrated plant oils to improve both physical and emotional well-being.">
-				<div class="services__card-img">
-					<img src="./img/service-relaxation.webp" alt="Aromatherapy">
-				</div>
-				<div class="services__card-body">
-					<h3>Aromatherapy</h3>
-					<p>Essential oils meet therapeutic touch</p>
-				</div>
-			</div>
-			<div class="services__card anim-on-scroll" data-anim="fade-scale" data-service-img="./img/service-hot-stone.webp" data-service-title="Hot Stone" data-service-desc="Heated stones are placed on specific parts of your body to relax and ease tense muscles and damaged soft tissues, allowing for deeper manipulation.">
-				<div class="services__card-img">
-					<img src="./img/service-hot-stone.webp" alt="Hot Stone Therapy">
-				</div>
-				<div class="services__card-body">
-					<h3>Hot Stone</h3>
-					<p>Heated stones for deep muscle relief</p>
-				</div>
-			</div>
-			<div class="services__card anim-on-scroll" data-anim="fade-scale" data-service-img="./img/service-sports.webp" data-service-title="Sports Therapy" data-service-desc="Designed for athletes and highly active people, engaging in intense physical activity. It helps prevent injury, improve flexibility, and enhance athletic performance.">
-				<div class="services__card-img">
-					<img src="./img/service-sports.webp" alt="Sports Massage">
-				</div>
-				<div class="services__card-body">
-					<h3>Sports Therapy</h3>
-					<p>Recovery and performance focused</p>
-				</div>
-			</div>
-			<div class="services__card anim-on-scroll" data-anim="fade-scale" data-service-img="./img/about.webp" data-service-title="Swedish" data-service-desc="A classic full-body relaxation massage using gentle, flowing strokes to decrease muscle toxins, improve circulation, and ease tension. Perfect for first-timers.">
-				<div class="services__card-img">
-					<img src="./img/about.webp" alt="Swedish Massage">
-				</div>
-				<div class="services__card-body">
-					<h3>Swedish</h3>
-					<p>Classic full-body relaxation massage</p>
-				</div>
-			</div>
-			<div class="services__card anim-on-scroll" data-anim="fade-scale" data-service-img="./img/hero.webp" data-service-title="Couples" data-service-desc="Share a relaxing experience with a partner or friend. Enjoy a therapeutic massage side-by-side in the same room with continuous, synchronized tension relief.">
-				<div class="services__card-img">
-					<img src="./img/hero.webp" alt="Couples Massage">
-				</div>
-				<div class="services__card-body">
-					<h3>Couples</h3>
-					<p>Shared relaxation experience</p>
-				</div>
-			</div>
+			}
 		</div>
 	</div>
 

@@ -3,5 +3,101 @@
   "hero_image": "./img/hero.webp",
   "hero_text": "Experience the ultimate relaxation with our professional massage therapy services in Edmonton.",
   "about_title": "About RTM Studio",
-  "about_text": "<p>At RTM, I believe that true wellness comes from a balanced approach to body and mind. Located in Edmonton's vibrant downtown, my studio offers a peaceful escape from the everyday.</p><p>As a registered massage therapist, I combine traditional techniques with modern approaches to deliver results-driven treatments. Whether you're dealing with chronic pain, recovering from an injury, or simply need to unwind — I've got you covered.</p>"
+  "about_text": "<p>At RTM, I believe that true wellness comes from a balanced approach to body and mind. Located in Edmonton's vibrant downtown, my studio offers a peaceful escape from the everyday.</p><p>As a registered massage therapist, I combine traditional techniques with modern approaches to deliver results-driven treatments. Whether you're dealing with chronic pain, recovering from an injury, or simply need to unwind — I've got you covered.</p>",
+  "stats": [
+    { "count": "5", "label": "Years Experience" },
+    { "count": "1000", "label": "Happy Clients" },
+    { "count": "6", "label": "Massage Types" },
+    { "count": "100", "label": "Satisfaction Rate" }
+  ],
+  "services_title": "Our Services",
+  "services_text": "Professional therapeutic treatments designed to restore balance, relieve tension, and promote overall wellness.",
+  "services": [
+    {
+      "image": "./img/service-deep-tissue.webp",
+      "title": "Deep Tissue",
+      "short_description": "Targeted pressure for chronic tension",
+      "description": "Targeted pressure for chronic tension to relieve muscle pain and stiffness. This massage focuses on the deepest layers of muscle tissue, tendons, and fascia."
+    },
+    {
+      "image": "./img/service-relaxation.webp",
+      "title": "Aromatherapy",
+      "short_description": "Essential oils meet therapeutic touch",
+      "description": "Essential oils meet therapeutic touch. Enjoy a relaxing massage combined with the use of highly concentrated plant oils to improve both physical and emotional well-being."
+    },
+    {
+      "image": "./img/service-hot-stone.webp",
+      "title": "Hot Stone",
+      "short_description": "Heated stones for deep muscle relief",
+      "description": "Heated stones are placed on specific parts of your body to relax and ease tense muscles and damaged soft tissues, allowing for deeper manipulation."
+    },
+    {
+      "image": "./img/service-sports.webp",
+      "title": "Sports Therapy",
+      "short_description": "Recovery and performance focused",
+      "description": "Designed for athletes and highly active people, engaging in intense physical activity. It helps prevent injury, improve flexibility, and enhance athletic performance."
+    },
+    {
+      "image": "./img/about.webp",
+      "title": "Swedish",
+      "short_description": "Classic full-body relaxation massage",
+      "description": "A classic full-body relaxation massage using gentle, flowing strokes to decrease muscle toxins, improve circulation, and ease tension. Perfect for first-timers."
+    },
+    {
+      "image": "./img/hero.webp",
+      "title": "Couples",
+      "short_description": "Shared relaxation experience",
+      "description": "Share a relaxing experience with a partner or friend. Enjoy a therapeutic massage side-by-side in the same room with continuous, synchronized tension relief."
+    }
+  ],
+  "therapist_title": "Meet Your Therapist",
+  "therapist_intro": "Hello! I am Yana Shtapenko, the founder and lead Registered Massage Therapist at RTM Studio.",
+  "therapist_main": "My passion is helping you achieve a pain-free, relaxed lifestyle through dedicated treatment plans tailored to your specific needs. I specialize in deep tissue and therapeutic techniques.",
+  "therapist_image": "./img/about.webp",
+  "therapist_bullets": [
+    { "text": "Registered Massage Therapist (RMT)" },
+    { "text": "Specializes in deep tissue massage" },
+    { "text": "Focus on therapeutic recovery" },
+    { "text": "Passionate about holistic wellness" }
+  ],
+  "testimonials_title": "What Our Clients Say",
+  "testimonials_text": "Real words from real clients. See why Edmonton trusts Serenity Touch for their wellness needs.",
+  "testimonials": [
+    {
+      "text": "The best massage experience in Edmonton. The deep tissue session completely relieved my back pain. I've been a regular for two years now.",
+      "initials": "JM",
+      "name": "Jessica M.",
+      "info": "Deep Tissue Client"
+    },
+    {
+      "text": "A true oasis of calm. The hot stone therapy was transformative — I felt completely renewed afterward. The staff is incredibly professional and kind.",
+      "initials": "DK",
+      "name": "David K.",
+      "info": "Hot Stone Regular"
+    },
+    {
+      "text": "I've tried many spas in the city and nothing compares. The relaxation massage with aromatherapy oils is absolutely divine. Highly recommend!",
+      "initials": "SR",
+      "name": "Sarah R.",
+      "info": "Weekly Visitor"
+    }
+  ],
+  "gallery_title": "Our Space",
+  "gallery_text": "Take a visual tour of our tranquil Edmonton studio designed for your ultimate comfort.",
+  "gallery": [
+    { "image": "./img/hero.webp", "alt": "Spa Treatment Room" },
+    { "image": "./img/service-relaxation.webp", "alt": "Aromatherapy Setup" },
+    { "image": "./img/service-hot-stone.webp", "alt": "Hot Stone Therapy" },
+    { "image": "./img/about.webp", "alt": "Massage Session" },
+    { "image": "./img/service-deep-tissue.webp", "alt": "Deep Tissue Massage" },
+    { "image": "./img/service-sports.webp", "alt": "Sports Massage" }
+  ],
+  "footer_brand": "RTM Studio",
+  "footer_desc": "Edmonton's premier registered massage therapist dedicated to your wellness.",
+  "contact_address": "10123 99 St NW, Edmonton",
+  "contact_map_url": "https://maps.app.goo.gl/uTHpGHM1AxHoQ9K",
+  "contact_phone": "(780) 555-0192",
+  "contact_email": "info@rtmstudio.ca",
+  "contact_hours": "Mon–Sat: 9AM–8PM",
+  "contact_map_embed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2370.874344779428!2d-113.48789959999999!3d53.5421578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a022450fa1ca95%3A0xe95a394e228d927!2s10123%2099%20St%20NW%2C%20Edmonton%2C%20AB%20T5J%203C6!5e0!3m2!1sen!2sca!4v1773978350684!5m2!1sen!2sca"
 }

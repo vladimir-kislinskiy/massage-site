@@ -1,22 +1,12 @@
 <div class="stats" id="stats">
   <div class="container">
     <div class="stats__grid">
+      @@for (var i = 0; i < stats.length; i++) {
       <div class="stats__item anim-on-scroll" data-anim="fade-up">
-        <div class="stats__number" data-count="5">0</div>
-        <div class="stats__label">Years Experience</div>
+        <div class="stats__number" data-count="`+stats[i].count+`">0</div>
+        <div class="stats__label">`+stats[i].label+`</div>
       </div>
-      <div class="stats__item anim-on-scroll" data-anim="fade-up">
-        <div class="stats__number" data-count="1000">0</div>
-        <div class="stats__label">Happy Clients</div>
-      </div>
-      <div class="stats__item anim-on-scroll" data-anim="fade-up">
-        <div class="stats__number" data-count="6">0</div>
-        <div class="stats__label">Massage Types</div>
-      </div>
-      <div class="stats__item anim-on-scroll" data-anim="fade-up">
-        <div class="stats__number" data-count="100">0</div>
-        <div class="stats__label">Satisfaction Rate</div>
-      </div>
+      }
     </div>
   </div>
 </div>
