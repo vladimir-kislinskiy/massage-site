@@ -1,8 +1,13 @@
 .anim-up {
   opacity: 0;
   transform: translate3d(0, 22px, 0);
+  -webkit-filter: blur(3px);
   filter: blur(3px);
-  will-change: opacity, transform, filter;
+  will-change: opacity, transform;
+  -webkit-transition:
+    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    -webkit-transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    -webkit-filter 1s cubic-bezier(0.33, 1, 0.68, 1);
   transition:
     opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
@@ -12,6 +17,7 @@
 .loaded .anim-up {
   opacity: 1;
   transform: translate3d(0, 0, 0);
+  -webkit-filter: blur(0);
   filter: blur(0);
 }
 
@@ -29,8 +35,13 @@
 
 .anim-on-scroll {
   opacity: 0;
+  -webkit-filter: blur(2px);
   filter: blur(2px);
-  will-change: opacity, transform, filter;
+  will-change: opacity, transform;
+  -webkit-transition:
+    opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+    -webkit-transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+    -webkit-filter 1.2s cubic-bezier(0.33, 1, 0.68, 1);
   transition:
     opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
     transform 1s cubic-bezier(0.22, 1, 0.36, 1),
@@ -58,6 +69,7 @@
 .anim-on-scroll.is-visible {
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
+  -webkit-filter: blur(0);
   filter: blur(0);
 }
 
