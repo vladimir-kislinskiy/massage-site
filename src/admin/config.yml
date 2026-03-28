@@ -14,6 +14,7 @@ collections:
         file: "src/data/content.json"
         fields:
           - { label: "Заголовок Hero", name: "hero_title", widget: "string" }
+          - { label: "Картинка Hero", name: "hero_image", widget: "image" }
           - { label: "Текст Hero", name: "hero_text", widget: "text" }
           - { label: "О нас - Заголовок", name: "about_title", widget: "string" }
           - { label: "О нас - Текст", name: "about_text", widget: "markdown" }
