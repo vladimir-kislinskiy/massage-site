@@ -1,7 +1,7 @@
 {
-  "footer_brand": "RTM Studio",
-  "about_title": "About RTM Studio",
-  "therapist_intro": "Hello! I am Yana Shtapenko, the founder and lead Registered Massage Therapist at RTM Studio.",
+  "footer_brand": "RMT Studio",
+  "about_title": "About RMT Studio",
+  "therapist_intro": "Hello! I am Yana Shtapenko, the founder and lead Registered Massage Therapist at RMT Studio.",
   "gallery_title": "Our Space",
   "therapist_bullets": [
     {
@@ -79,7 +79,7 @@
   "services_title": "Our Services",
   "testimonials_text": "Real words from real clients. See why Edmonton trusts Serenity Touch for their wellness needs.",
   "gallery_text": "Take a visual tour of our tranquil Edmonton studio designed for your ultimate comfort.",
-  "contact_email": "info@rtmstudio.ca",
+  "contact_email": "yanarmt@gmail.com",
   "services": [
     {
       "image": "/img/service-deep-tissue.webp",

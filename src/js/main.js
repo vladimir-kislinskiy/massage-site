@@ -89,15 +89,26 @@ document.addEventListener("DOMContentLoaded", function () {
   // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
+      e.preventDefault();
       const id = this.getAttribute("href");
-      if (id === "#") return;
+
+      if (id === "#") {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+        return;
+      }
+
       const el = document.querySelector(id);
       if (el) {
-        e.preventDefault();
-        const headerH = header ? 64 : 0; // Fixed header height to avoid reflow
+        const headerH = header ? 64 : 0;
         const targetTop = el.getBoundingClientRect().top + window.pageYOffset;
+        // Ensure scroll target is not negative to prevent jitter
+        const scrollTarget = Math.max(0, targetTop - headerH);
+        
         window.scrollTo({
-          top: targetTop - headerH,
+          top: scrollTarget,
           behavior: "smooth",
         });
       }
