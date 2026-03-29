@@ -345,40 +345,38 @@ document.addEventListener("DOMContentLoaded", function () {
   const serviceModalOverlay = document.getElementById("serviceModalOverlay");
   const serviceModalClose = document.getElementById("serviceModalClose");
   const serviceModalImg = document.getElementById("serviceModalImg");
-  const serviceModalTitle = document.getElementById("serviceModalTitle");
-  const serviceModalDesc = document.getElementById("serviceModalDesc");
 
-  if (serviceCards.length > 0 && serviceModal) {
+  if (serviceCards.length > 0) {
     serviceCards.forEach((card) => {
       card.addEventListener("click", function () {
-        const img = this.getAttribute("data-service-img");
-        const title = this.getAttribute("data-service-title");
-        const desc = this.getAttribute("data-service-desc");
-        if (img) serviceModalImg.src = img;
-        if (title) serviceModalTitle.textContent = title;
-        if (desc) serviceModalDesc.innerHTML = desc;
-        serviceModal.classList.add("is-active");
-        document.documentElement.classList.add("lock");
+        if (window.innerWidth < 992) {
+          serviceCards.forEach((c) => {
+            if (c !== this) c.classList.remove("is-flipped");
+          });
+          this.classList.toggle("is-flipped");
+        }
       });
     });
+  }
 
-    const closeServiceModal = () => {
+  const closeServiceModal = () => {
+    if (serviceModal) {
       serviceModal.classList.remove("is-active");
       document.documentElement.classList.remove("lock");
       setTimeout(() => {
-        serviceModalImg.src = "";
+        if (serviceModalImg) serviceModalImg.src = "";
       }, 300);
-    };
+    }
+  };
 
-    if (serviceModalClose)
-      serviceModalClose.addEventListener("click", closeServiceModal);
-    if (serviceModalOverlay)
-      serviceModalOverlay.addEventListener("click", closeServiceModal);
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && serviceModal.classList.contains("is-active"))
-        closeServiceModal();
-    });
-  }
+  if (serviceModalClose)
+    serviceModalClose.addEventListener("click", closeServiceModal);
+  if (serviceModalOverlay)
+    serviceModalOverlay.addEventListener("click", closeServiceModal);
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && serviceModal && serviceModal.classList.contains("is-active"))
+      closeServiceModal();
+  });
 
   // Sticky CTA
   const stickyCta = document.getElementById("stickyCta");
