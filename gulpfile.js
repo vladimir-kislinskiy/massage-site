@@ -47,8 +47,8 @@ const resources = () => {
 
 const images = () => {
 	const imgPaths = [
-		"./src/img/*.{jpg,png,jpeg,svg,webp}",
-		"./src/img/**/*.{jpg,png,jpeg,svg,webp}",
+		"./src/img/*.{jpg,JPG,png,PNG,jpeg,JPEG,svg,SVG,webp,WEBP}",
+		"./src/img/**/*.{jpg,JPG,png,PNG,jpeg,JPEG,svg,SVG,webp,WEBP}",
 	];
 
 	src(imgPaths)
@@ -105,8 +105,8 @@ const watchFiles = () => {
 	watch("./src/data/content.json", htmlInclude);
 	watch("./src/*.html", htmlInclude);
 	watch("./src/resources/**", resources);
-	watch("./src/img/*.{jpg,jpeg,png,svg,webp}", images);
-	watch("./src/img/**/*.{jpg,jpeg,png,svg,webp}", images);
+	watch("./src/img/*.{jpg,JPG,jpeg,JPEG,png,PNG,svg,SVG,webp,WEBP}", images);
+	watch("./src/img/**/*.{jpg,JPG,jpeg,JPEG,png,PNG,svg,SVG,webp,WEBP}", images);
 	watch("./src/img/svg/**.svg", images);
 };
 
