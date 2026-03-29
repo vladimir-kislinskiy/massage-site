@@ -63,6 +63,19 @@ const images = () => {
 
 const htmlInclude = () => {
 	const content = JSON.parse(readFileSync("./src/data/content.json", "utf8"));
+	
+	// Recursively update image paths to .webp so uploaded JPGs use auto-optimized versions
+	const convertExtensionsToWebp = (obj) => {
+		for (const key in obj) {
+			if (typeof obj[key] === 'string') {
+				obj[key] = obj[key].replace(/\.(jpg|jpeg|png)\b/gi, '.webp');
+			} else if (typeof obj[key] === 'object' && obj[key] !== null) {
+				convertExtensionsToWebp(obj[key]);
+			}
+		}
+	};
+	convertExtensionsToWebp(content);
+
 	return src(["./src/*.html", "!./src/_*.html", "!./src/templates.html"])
 		.pipe(
 			fileInclude({
