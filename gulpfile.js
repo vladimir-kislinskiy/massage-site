@@ -46,19 +46,17 @@ const resources = () => {
 };
 
 const images = () => {
-	return src([
-		"./src/img/*.jpg",
-		"./src/img/*.png",
-		"./src/img/*.jpeg",
-		"./src/img/*.svg",
-		"./src/img/*.webp",
-		"./src/img/**/*.jpg",
-		"./src/img/**/*.png",
-		"./src/img/**/*.jpeg",
-		"./src/img/**/*.svg",
-		"./src/img/**/*.webp",
-	])
+	const imgPaths = [
+		"./src/img/*.{jpg,png,jpeg,svg,webp}",
+		"./src/img/**/*.{jpg,png,jpeg,svg,webp}",
+	];
+
+	src(imgPaths)
 		.pipe(webp())
+		.pipe(imagemin())
+		.pipe(dest("./dist/img"));
+
+	return src(imgPaths)
 		.pipe(imagemin())
 		.pipe(dest("./dist/img"));
 };
