@@ -173,35 +173,15 @@
       background: var(--lp-dark);
       border-radius: 1px;
       
-      // Smooth transitions for interaction
+      // Premium synchronous transition for opening and closing (matching vkys.ca)
       transition: 
-        transform 0.4s var(--lp-ease-smooth),
-        opacity 0.4s var(--lp-ease-smooth),
-        background 0.4s var(--lp-ease-smooth),
-        filter 0.4s var(--lp-ease-smooth);
+        transform 0.45s cubic-bezier(0.23, 1, 0.32, 1),
+        opacity 0.45s cubic-bezier(0.23, 1, 0.32, 1),
+        background 0.45s cubic-bezier(0.23, 1, 0.32, 1);
 
-      // Entrance animation initial state
-      opacity: 0;
-      transform: translate3d(12px, 0, 0);
-      filter: blur(2px);
-
-      .loaded & {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-        filter: blur(0);
-      }
-
-      // Entrance delay (staggered)
-      @for $i from 1 through 3 {
-        &:nth-child(#{$i}) {
-          transition-delay: #{0.25s + ($i * 0.1s)};
-        }
-      }
-
-      // Disable stagger once page is "ready" to ensure synchronous burger toggle
-      html.ready & {
-        transition-delay: 0s !important;
-      }
+      // Default state
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
     }
 
     [data-theme="dark"] & span {
@@ -217,14 +197,14 @@
         background: #fff;
       }
       span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
+        transform: translateY(7px) rotate(45deg);
       }
       span:nth-child(2) {
         opacity: 0;
         transform: scaleX(0);
       }
       span:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -5px);
+        transform: translateY(-7px) rotate(-45deg);
       }
     }
   }

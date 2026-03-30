@@ -8,10 +8,6 @@ class BaseHelpers {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           this.html.classList.add("loaded");
-          // Add 'ready' class after entrance animations finish (1.5s)
-          setTimeout(() => {
-            this.html.classList.add("ready");
-          }, 1500);
         });
       });
     };
