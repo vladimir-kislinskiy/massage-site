@@ -166,6 +166,25 @@
     padding: 0;
     z-index: 102; /* ensure button is above the mobile menu */
 
+    // Entrance animation
+    opacity: 0;
+    visibility: hidden;
+    transform: translate3d(32px, 0, 0);
+    filter: blur(8px);
+    transition:
+      opacity 0.8s var(--lp-ease-smooth),
+      transform 0.8s var(--lp-ease-smooth),
+      filter 0.8s var(--lp-ease-smooth),
+      visibility 0.8s var(--lp-ease-smooth);
+    transition-delay: 0.4s;
+
+    .loaded & {
+      opacity: 1;
+      visibility: visible;
+      transform: translate3d(0, 0, 0);
+      filter: blur(0);
+    }
+
     span {
       display: block;
       width: 100%;
