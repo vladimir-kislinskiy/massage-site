@@ -29,18 +29,11 @@
   &__overlay {
     position: absolute;
     inset: 0;
-    background:
-      linear-gradient(
-        120deg,
-        rgba(31, 36, 46, 0.82) 0%,
-        rgba(31, 36, 46, 0.45) 42%,
-        rgba(88, 167, 175, 0.38) 100%
-      ),
-      radial-gradient(
-        ellipse 90% 70% at 70% 40%,
-        rgba(88, 167, 175, 0.22) 0%,
-        transparent 55%
-      );
+    background: radial-gradient(
+      circle at center,
+      rgba(31, 36, 46, 0.45) 0%,
+      rgba(31, 36, 46, 0.1) 100%
+    );
   }
 
   .container {
