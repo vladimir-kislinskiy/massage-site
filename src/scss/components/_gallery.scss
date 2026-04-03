@@ -28,8 +28,10 @@
       transform: translateZ(0);
     }
 
-    &:hover img {
-      transform: scale(1.1);
+    @media (hover: hover) {
+      &:hover img {
+        transform: scale(1.1);
+      }
     }
   }
 
@@ -71,7 +73,7 @@
   transition:
     opacity 0.3s,
     visibility 0.3s;
-  padding: 40px;
+  padding: clamp(5px, 2vw, 40px);
 
   &.is-active {
     opacity: 1;
