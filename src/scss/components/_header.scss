@@ -63,7 +63,7 @@
     // Entrance animation
     opacity: 0;
     visibility: hidden;
-    transform: translate3d(-42px, 0, 0);
+    transform: translate3d(-50px, 0, 0);
     filter: blur(8px);
     transition:
       color 0.35s var(--lp-ease-smooth),
@@ -255,7 +255,7 @@
   // Entrance animation
   opacity: 0;
   visibility: hidden;
-  transform: translate3d(32px, 0, 0);
+  transform: translate3d(50px, 0, 0);
   filter: blur(8px);
   // Consolidate all transitions, including entrance and interactive states
   transition:
