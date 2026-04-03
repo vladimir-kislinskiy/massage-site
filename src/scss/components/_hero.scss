@@ -43,9 +43,9 @@
 
   &__content {
     padding: clamp(40px, 8vh, 80px) 0 80px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1.45fr 1fr;
     align-items: center;
-    justify-content: space-between;
     gap: 40px;
   }
 
