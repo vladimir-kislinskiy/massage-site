@@ -90,3 +90,90 @@
   opacity: 1;
   transform: translate3d(0, 0, 0);
 }
+
+// ── Image shimmer placeholder & smooth reveal ──────────────────────────
+
+@keyframes imgShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+// Shared shimmer placeholder & scale-in reveal (vkys.ca pattern)
+.img-wrap {
+  position: relative;
+  overflow: hidden;
+  transform: scale(0.5);
+  opacity: 0;
+  transition:
+    transform 0.7s var(--lp-ease-smooth),
+    opacity 0.7s var(--lp-ease-smooth);
+
+  // Shimmer pseudo-element
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      105deg,
+      var(--lp-bg-tertiary) 0%,
+      var(--lp-bg-tertiary) 35%,
+      var(--lp-accent-pale) 50%,
+      var(--lp-bg-tertiary) 65%,
+      var(--lp-bg-tertiary) 100%
+    );
+    background-size: 200% 100%;
+    animation: imgShimmer 1.5s ease-in-out infinite;
+    z-index: 1;
+    opacity: 1;
+    transition: opacity 0.5s var(--lp-ease-smooth);
+    pointer-events: none;
+  }
+
+  // Step 1: Container scales in when scrolled into view
+  &.img-revealed {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  // Step 2: Hide shimmer once image is loaded
+  &.img-loaded::after {
+    opacity: 0;
+  }
+
+  // Image starts invisible, fades in when loaded
+  > img {
+    opacity: 0;
+    transition: opacity 0.5s var(--lp-ease-smooth);
+  }
+
+  &.img-loaded > img {
+    opacity: 1;
+  }
+}
+
+// When combined with .anim-on-scroll, the scroll animation handles
+// container opacity/transform — img-wrap only provides shimmer + image fade
+.img-wrap.anim-on-scroll {
+  transform: none;
+  opacity: 0; // anim-on-scroll controls this
+}
+
+.img-wrap.anim-on-scroll.is-visible {
+  opacity: 1;
+}
+
+// Same for .anim-up — entrance animation handles container reveal
+.img-wrap.anim-up {
+  transform: translate3d(0, 22px, 0);
+  opacity: 0; // anim-up controls this
+}
+
+.loaded .img-wrap.anim-up {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}

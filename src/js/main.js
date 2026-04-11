@@ -22,6 +22,43 @@ class BaseHelpers {
 
 BaseHelpers.addLoadedClass();
 
+// ── Smooth image reveal: scale-in + shimmer → fade-in (vkys.ca pattern) ──
+document.addEventListener("DOMContentLoaded", function () {
+  const wraps = document.querySelectorAll(".img-wrap");
+  if (!wraps.length) return;
+
+  // Step 1: Scale the container into view via IntersectionObserver
+  const revealObs = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("img-revealed");
+        revealObs.unobserve(entry.target);
+      });
+    },
+    { rootMargin: "0px 0px -40px 0px", threshold: 0.15 }
+  );
+
+  wraps.forEach(function (wrap) {
+    revealObs.observe(wrap);
+
+    // Step 2: Fade in the actual image once loaded
+    const img = wrap.querySelector("img");
+    if (!img) return;
+
+    var markLoaded = function () {
+      wrap.classList.add("img-loaded");
+    };
+
+    if (img.complete && img.naturalWidth > 0) {
+      requestAnimationFrame(markLoaded);
+    } else {
+      img.addEventListener("load", markLoaded);
+      img.addEventListener("error", markLoaded);
+    }
+  });
+});
+
 document.addEventListener("DOMContentLoaded", function () {
   const header = document.getElementById("header");
   const heroSection = document.getElementById("hero");
@@ -141,6 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Scroll animations (sections)
   const animEls = document.querySelectorAll(".anim-on-scroll");
   if (animEls.length) {
+    // Group elements by their parent section for stagger counting
     const sectionMap = new Map();
     animEls.forEach((el) => {
       const section =
@@ -156,43 +194,49 @@ document.addEventListener("DOMContentLoaded", function () {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
           const el = entry.target;
+
+          // Skip if already animated
+          if (el.classList.contains("is-visible") || el.classList.contains("is-queued")) return;
+
+          // Find which section group this element belongs to
           const section =
             el.closest("section") ||
             el.closest(".container") ||
             el.parentElement;
           const siblings = sectionMap.get(section) || [el];
 
+          // Count how many siblings are already visible/queued (for stagger offset)
           let visibleCount = 0;
-          siblings.forEach((sibling) => {
+          for (let i = 0; i < siblings.length; i++) {
+            if (siblings[i] === el) break;
             if (
-              sibling.classList.contains("is-visible") ||
-              sibling.classList.contains("is-queued")
+              siblings[i].classList.contains("is-visible") ||
+              siblings[i].classList.contains("is-queued")
             ) {
-              if (!sibling.hasAttribute("data-delay")) {
+              if (!siblings[i].hasAttribute("data-delay")) {
                 visibleCount++;
               }
-              return;
             }
-            sibling.classList.add("is-queued");
-            
-            if (sibling.hasAttribute("data-delay")) {
-              sibling.style.setProperty(
-                "--anim-delay",
-                `${sibling.getAttribute("data-delay")}ms`
-              );
-            } else {
-              sibling.style.setProperty(
-                "--anim-delay",
-                `${visibleCount * STAGGER_MS}ms`
-              );
-              visibleCount++;
-            }
+          }
 
+          el.classList.add("is-queued");
+
+          if (el.hasAttribute("data-delay")) {
+            el.style.setProperty(
+              "--anim-delay",
+              `${el.getAttribute("data-delay")}ms`
+            );
+          } else {
+            el.style.setProperty(
+              "--anim-delay",
+              `${visibleCount * STAGGER_MS}ms`
+            );
+          }
+
+          requestAnimationFrame(() => {
             requestAnimationFrame(() => {
-              requestAnimationFrame(() => {
-                sibling.classList.add("is-visible");
-                obs.unobserve(sibling);
-              });
+              el.classList.add("is-visible");
+              obs.unobserve(el);
             });
           });
         });
