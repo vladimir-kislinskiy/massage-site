@@ -250,6 +250,10 @@
   }
 
   // Billing
+  .billing__marquee {
+    overflow: visible;
+  }
+
   .billing__marquee-track {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
