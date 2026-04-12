@@ -1,4 +1,4 @@
-<section class="services" id="services">
+<section class="services" id="services" data-stagger="50">
 	<div class="container">
 		<div class="section-head anim-on-scroll">
 			<h2 class="section-head__title">@@services_title</h2>
@@ -6,7 +6,7 @@
 		</div>
 		<div class="services__grid">
 			@@for (var i = 0; i < services.length; i++) {
-			<div class="services__card anim-on-scroll" data-anim="fade-scale" data-service-img="`+services[i].image+`" data-service-title="`+services[i].title+`" data-service-desc="`+services[i].description+`" id="service-`+i+`">
+			<div class="services__card anim-on-scroll" data-service-img="`+services[i].image+`" data-service-title="`+services[i].title+`" data-service-desc="`+services[i].description+`" id="service-`+i+`">
 				<div class="services__card-inner">
 					<div class="services__card-front">
 						<div class="services__card-img img-wrap">

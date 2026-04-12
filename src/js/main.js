@@ -22,27 +22,9 @@ class BaseHelpers {
 
 BaseHelpers.addLoadedClass();
 
-// ── Smooth image reveal: scale-in + shimmer → fade-in (vkys.ca pattern) ──
+// Universal image load detection for .img-wrap shimmer placeholders
 document.addEventListener("DOMContentLoaded", function () {
-  const wraps = document.querySelectorAll(".img-wrap");
-  if (!wraps.length) return;
-
-  // Step 1: Scale the container into view via IntersectionObserver
-  const revealObs = new IntersectionObserver(
-    function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("img-revealed");
-        revealObs.unobserve(entry.target);
-      });
-    },
-    { rootMargin: "0px 0px -40px 0px", threshold: 0.15 }
-  );
-
-  wraps.forEach(function (wrap) {
-    revealObs.observe(wrap);
-
-    // Step 2: Fade in the actual image once loaded
+  document.querySelectorAll(".img-wrap").forEach(function (wrap) {
     const img = wrap.querySelector("img");
     if (!img) return;
 
@@ -51,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     if (img.complete && img.naturalWidth > 0) {
-      requestAnimationFrame(markLoaded);
+      markLoaded();
     } else {
       img.addEventListener("load", markLoaded);
       img.addEventListener("error", markLoaded);
@@ -81,28 +63,34 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Header scroll + progress bar
+  // Header scroll + progress bar (throttled via rAF)
   const progressBar = document.querySelector(".header__progress");
   if (header) {
     let docHeight = 0;
+    let scrollTicking = false;
+
     const updateDimensions = () => {
       docHeight = document.documentElement.scrollHeight - window.innerHeight;
     };
-    
-    const updateHeader = () => {
-      header.classList.toggle("is-scrolled", window.scrollY > 10);
 
-      if (progressBar && docHeight > 0) {
-        const scrollTop = window.scrollY;
-        const percent = (scrollTop / docHeight) * 100;
-        progressBar.style.width = Math.min(percent, 100) + "%";
-      }
+    const onScroll = () => {
+      if (scrollTicking) return;
+      scrollTicking = true;
+      requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        header.classList.toggle("is-scrolled", scrollY > 10);
+
+        if (progressBar && docHeight > 0) {
+          progressBar.style.width = Math.min((scrollY / docHeight) * 100, 100) + "%";
+        }
+        scrollTicking = false;
+      });
     };
 
     window.addEventListener("resize", updateDimensions, { passive: true });
-    window.addEventListener("scroll", updateHeader, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
     updateDimensions();
-    updateHeader();
+    onScroll();
   }
 
   // Mobile burger
@@ -141,9 +129,8 @@ document.addEventListener("DOMContentLoaded", function () {
       if (el) {
         const headerH = header ? 64 : 0;
         const targetTop = el.getBoundingClientRect().top + window.pageYOffset;
-        // Ensure scroll target is not negative to prevent jitter
         const scrollTarget = Math.max(0, targetTop - headerH);
-        
+
         window.scrollTo({
           top: scrollTarget,
           behavior: "smooth",
@@ -152,33 +139,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Hero parallax
-  const parallaxBg = document.querySelector("[data-parallax]");
-  if (parallaxBg && heroSection) {
-    let ticking = false;
-    window.addEventListener(
-      "scroll",
-      () => {
-        if (!ticking) {
-          requestAnimationFrame(() => {
-            const scrolled = window.scrollY;
-            const heroH = heroSection.offsetHeight;
-            if (scrolled < heroH) {
-              parallaxBg.style.transform = `translateY(${scrolled * 0.3}px)`;
-            }
-            ticking = false;
-          });
-          ticking = true;
-        }
-      },
-      { passive: true },
-    );
-  }
+  // Hero parallax — pure CSS (position:fixed + clip-path), no JS needed
 
-  // Scroll animations (sections)
+  // Scroll animations (IntersectionObserver — fires once per element, no scroll listener)
   const animEls = document.querySelectorAll(".anim-on-scroll");
   if (animEls.length) {
-    // Group elements by their parent section for stagger counting
     const sectionMap = new Map();
     animEls.forEach((el) => {
       const section =
@@ -195,17 +160,14 @@ document.addEventListener("DOMContentLoaded", function () {
           if (!entry.isIntersecting) return;
           const el = entry.target;
 
-          // Skip if already animated
           if (el.classList.contains("is-visible") || el.classList.contains("is-queued")) return;
 
-          // Find which section group this element belongs to
           const section =
             el.closest("section") ||
             el.closest(".container") ||
             el.parentElement;
           const siblings = sectionMap.get(section) || [el];
 
-          // Count how many siblings are already visible/queued (for stagger offset)
           let visibleCount = 0;
           for (let i = 0; i < siblings.length; i++) {
             if (siblings[i] === el) break;
@@ -227,9 +189,12 @@ document.addEventListener("DOMContentLoaded", function () {
               `${el.getAttribute("data-delay")}ms`
             );
           } else {
+            const customStagger = section.getAttribute("data-stagger") || (section.closest("[data-stagger]") && section.closest("[data-stagger]").getAttribute("data-stagger"));
+            const stagger = customStagger ? parseInt(customStagger, 10) : 120;
+            
             el.style.setProperty(
               "--anim-delay",
-              `${visibleCount * STAGGER_MS}ms`
+              `${visibleCount * stagger}ms`
             );
           }
 
@@ -242,8 +207,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       },
       {
-        rootMargin: "0px 0px -60px 0px",
-        threshold: 0.08,
+        rootMargin: "0px 0px 80px 0px",
+        threshold: 0.02,
       },
     );
 
@@ -252,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 60);
   }
 
-  // Stats counter animation
+  // Stats counter animation (IntersectionObserver — fires once, no scroll listener)
   const statNumbers = document.querySelectorAll(".stats__number[data-count]");
   if (statNumbers.length) {
     const counterObs = new IntersectionObserver(
@@ -308,36 +273,6 @@ document.addEventListener("DOMContentLoaded", function () {
         992: { slidesPerView: 3, spaceBetween: 24 },
       },
     });
-
-    const gallerySlides = document.querySelectorAll(".gallery__item");
-    if (gallerySlides.length) {
-      const SLIDE_STAGGER = 100;
-      const slideObs = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            gallerySlides.forEach((slide, i) => {
-              if (slide.classList.contains("is-visible")) return;
-              slide.style.setProperty(
-                "--slide-delay",
-                `${i * SLIDE_STAGGER}ms`,
-              );
-              requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                  slide.classList.add("is-visible");
-                });
-              });
-            });
-            slideObs.disconnect();
-          });
-        },
-        { rootMargin: "0px 0px -40px 0px", threshold: 0.1 },
-      );
-
-      slideObs.observe(
-        document.querySelector(".gallery__slider") || gallerySlides[0],
-      );
-    }
   }
 
   // Gallery Lightbox
@@ -383,13 +318,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Service Modal
+  // Service cards (mobile flip)
   const serviceCards = document.querySelectorAll(".services__card");
-  const serviceModal = document.getElementById("serviceModal");
-  const serviceModalOverlay = document.getElementById("serviceModalOverlay");
-  const serviceModalClose = document.getElementById("serviceModalClose");
-  const serviceModalImg = document.getElementById("serviceModalImg");
-
   if (serviceCards.length > 0) {
     serviceCards.forEach((card) => {
       card.addEventListener("click", function () {
@@ -402,6 +332,12 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   }
+
+  // Service modal close (legacy)
+  const serviceModal = document.getElementById("serviceModal");
+  const serviceModalOverlay = document.getElementById("serviceModalOverlay");
+  const serviceModalClose = document.getElementById("serviceModalClose");
+  const serviceModalImg = document.getElementById("serviceModalImg");
 
   const closeServiceModal = () => {
     if (serviceModal) {
@@ -422,7 +358,7 @@ document.addEventListener("DOMContentLoaded", function () {
       closeServiceModal();
   });
 
-  // Sticky CTA
+  // Sticky CTA (IntersectionObserver — no scroll listener)
   const stickyCta = document.getElementById("stickyCta");
   if (stickyCta && heroSection) {
     const stickyObs = new IntersectionObserver(
@@ -435,6 +371,4 @@ document.addEventListener("DOMContentLoaded", function () {
     );
     stickyObs.observe(heroSection);
   }
-
-  // JS 3D tilt removed. Using CSS scale.
 });

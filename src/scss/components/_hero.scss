@@ -1,34 +1,29 @@
-@keyframes heroKenBurns {
-  from {
-    transform: scale(1) translate3d(0, 0, 0);
-  }
-  to {
-    transform: scale(1.07) translate3d(-0.8%, -0.5%, 0);
-  }
-}
-
 .hero {
   position: relative;
   overflow: hidden;
+  // clip-path creates a new clipping context that contains position:fixed children
+  clip-path: inset(0);
   display: flex;
   align-items: center;
   margin-top: 64px;
   min-height: 80vh;
 
   &__bg {
-    position: absolute;
-    inset: 0;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      animation: heroKenBurns 36s var(--lp-ease-out-soft) infinite alternate;
-    }
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   &__overlay {
     position: absolute;
     inset: 0;
+    z-index: 1;
     background: radial-gradient(
       circle at center,
       rgba(31, 36, 46, 0.45) 0%,
@@ -91,8 +86,3 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero__bg img {
-    animation: none;
-  }
-}

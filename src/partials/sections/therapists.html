@@ -1,16 +1,16 @@
 <section class="therapists" id="therapists">
   <div class="container">
     <div class="therapists__grid">
-      <div class="therapists__image img-wrap anim-on-scroll" data-anim="fade-left">
+      <div class="therapists__image img-wrap anim-on-scroll">
         <img src="@@therapist_image" alt="@@therapist_title">
       </div>
-      <div class="therapists__content anim-on-scroll" data-anim="fade-right">
+      <div class="therapists__content anim-on-scroll">
         <h2 class="therapists__title">@@therapist_title</h2>
         <p class="therapists__text">@@therapist_intro</p>
         <p class="therapists__text">@@therapist_main</p>
         <ul class="therapists__list">
           @@for (var i = 0; i < therapist_bullets.length; i++) {
-          <li class="anim-on-scroll" data-anim="fade-right">
+          <li class="anim-on-scroll">
             `+therapist_bullets[i].text+`
           </li>
           }
