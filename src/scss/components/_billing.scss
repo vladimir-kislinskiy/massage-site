@@ -51,15 +51,6 @@
   &__item {
     flex-shrink: 0;
 
-    // Reset anim-on-scroll on desktop so they don't fade up during horizontal marquee
-    @media screen and (min-width: 769px) {
-      &.anim-on-scroll {
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
-      }
-    }
-
 						img{
 							max-width: clamp(140px, 20vw, 150px);
 						}

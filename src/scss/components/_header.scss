@@ -13,8 +13,8 @@
 
   &.is-scrolled {
     background: var(--lp-header-scrolled);
-    backdrop-filter: blur(18px) saturate(1.15);
-    -webkit-backdrop-filter: blur(18px) saturate(1.15);
+    backdrop-filter: blur(12px) saturate(1.1);
+    -webkit-backdrop-filter: blur(12px) saturate(1.1);
     box-shadow:
       0 1px 0 rgba(255, 255, 255, 0.06),
       0 12px 40px rgba(0, 0, 0, 0.18);
@@ -63,20 +63,17 @@
     // Entrance animation
     opacity: 0;
     visibility: hidden;
-    transform: translate3d(-50px, 0, 0);
-    filter: blur(8px);
+    transform: translate3d(-20px, 0, 0);
     transition:
       color 0.35s var(--lp-ease-smooth),
-      opacity 1.1s var(--lp-ease-smooth),
-      transform 1.1s var(--lp-ease-smooth),
-      filter 1.1s var(--lp-ease-smooth),
-      visibility 1.1s var(--lp-ease-smooth);
+      opacity 0.7s var(--lp-ease-smooth),
+      transform 0.7s var(--lp-ease-smooth),
+      visibility 0.7s var(--lp-ease-smooth);
 
     .loaded & {
       opacity: 1;
       visibility: visible;
       transform: translate3d(0, 0, 0);
-      filter: blur(0);
     }
   }
 
@@ -90,17 +87,14 @@
 
       // Entrance animation (staggered)
       opacity: 0;
-      transform: translate3d(0, -24px, 0);
-      filter: blur(4px);
+      transform: translate3d(0, -16px, 0);
       transition:
-        opacity 0.8s var(--lp-ease-smooth),
-        transform 0.8s var(--lp-ease-smooth),
-        filter 0.8s var(--lp-ease-smooth);
+        opacity 0.6s var(--lp-ease-smooth),
+        transform 0.6s var(--lp-ease-smooth);
 
       .loaded & {
         opacity: 1;
         transform: translate3d(0, 0, 0);
-        filter: blur(0);
       }
 
       @for $i from 1 through 10 {
@@ -169,20 +163,17 @@
     // Entrance animation
     opacity: 0;
     visibility: hidden;
-    transform: translate3d(32px, 0, 0);
-    filter: blur(8px);
+    transform: translate3d(16px, 0, 0);
     transition:
-      opacity 0.8s var(--lp-ease-smooth),
-      transform 0.8s var(--lp-ease-smooth),
-      filter 0.8s var(--lp-ease-smooth),
-      visibility 0.8s var(--lp-ease-smooth);
-    transition-delay: 0.4s;
+      opacity 0.6s var(--lp-ease-smooth),
+      transform 0.6s var(--lp-ease-smooth),
+      visibility 0.6s var(--lp-ease-smooth);
+    transition-delay: 0.3s;
 
     .loaded & {
       opacity: 1;
       visibility: visible;
       transform: translate3d(0, 0, 0);
-      filter: blur(0);
     }
 
     span {
@@ -255,28 +246,25 @@
   // Entrance animation
   opacity: 0;
   visibility: hidden;
-  transform: translate3d(50px, 0, 0);
-  filter: blur(8px);
+  transform: translate3d(16px, 0, 0);
   // Consolidate all transitions, including entrance and interactive states
   transition:
-    opacity 0.8s var(--lp-ease-smooth),
-    transform 0.8s var(--lp-ease-smooth),
-    filter 0.8s var(--lp-ease-smooth),
-    visibility 0.8s var(--lp-ease-smooth),
+    opacity 0.6s var(--lp-ease-smooth),
+    transform 0.6s var(--lp-ease-smooth),
+    visibility 0.6s var(--lp-ease-smooth),
     background 0.4s var(--lp-ease-smooth),
     border-color 0.4s var(--lp-ease-smooth),
     color 0.4s var(--lp-ease-smooth);
-  transition-delay: 0.2s; // Slight delay so it appears with the menu
+  transition-delay: 0.15s;
 
   .loaded & {
     opacity: 1;
     visibility: visible;
     transform: translate3d(0, 0, 0);
-    filter: blur(0);
 
     &:hover {
       transform: scale(1.1) rotate(15deg);
-      transition-delay: 0s; // Remove delay for interaction
+      transition-delay: 0s;
     }
   }
 

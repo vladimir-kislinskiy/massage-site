@@ -21,6 +21,11 @@
     box-shadow: var(--lp-shadow-sm);
     transition: transform 0.6s var(--lp-ease-smooth);
 
+    // CSS stagger for scroll reveal
+    @for $i from 1 through 4 {
+      &:nth-child(#{$i}) { --reveal-delay: #{($i - 1) * 0.08}s; }
+    }
+
     &:hover {
       transform: translateY(-3px);
     }

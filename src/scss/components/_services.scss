@@ -46,6 +46,11 @@
     background: transparent;
     border: none;
 
+    // CSS stagger for scroll reveal — no JS overhead
+    @for $i from 1 through 6 {
+      &:nth-child(#{$i}) { --reveal-delay: #{($i - 1) * 0.06}s; }
+    }
+
     &.in-viewport {
       animation: var(--lp-anim-fade-scale);
     }
@@ -77,9 +82,7 @@
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: var(--lp-radius-lg);
-    // border: 1px solid var(--lp-border);
     box-shadow: 0 4px 15px var(--lp-shadow-card-hover-color);
-    transform-style: preserve-3d;
   }
 
   &__card-front {
@@ -127,19 +130,16 @@
       color: var(--lp-text);
       margin: 0;
       user-select: none;
-      transform: translate3d(0, -7px, 70px); // Text pops out from the footer
-      text-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
     }
   }
 
   &__card-back {
     background: var(--lp-dark);
     color: #fff;
-    transform: rotateY(180deg) translateZ(1px); // translateZ prevents Z-fighting
+    transform: rotateY(180deg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    transform-style: preserve-3d;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -162,8 +162,6 @@
   &__card-back-content {
     position: relative;
     z-index: 2;
-    transform: translate3d(0, 0, 80px);
-    text-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
 
     h3 {
       font-family: var(--lp-font-heading);

@@ -139,83 +139,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Hero parallax — pure CSS (position:fixed + clip-path), no JS needed
-
-  // Scroll animations (IntersectionObserver — fires once per element, no scroll listener)
-  const animEls = document.querySelectorAll(".anim-on-scroll");
-  if (animEls.length) {
-    const sectionMap = new Map();
-    animEls.forEach((el) => {
-      const section =
-        el.closest("section") || el.closest(".container") || el.parentElement;
-      if (!sectionMap.has(section)) sectionMap.set(section, []);
-      sectionMap.get(section).push(el);
-    });
-
-    const STAGGER_MS = 120;
-
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const el = entry.target;
-
-          if (el.classList.contains("is-visible") || el.classList.contains("is-queued")) return;
-
-          const section =
-            el.closest("section") ||
-            el.closest(".container") ||
-            el.parentElement;
-          const siblings = sectionMap.get(section) || [el];
-
-          let visibleCount = 0;
-          for (let i = 0; i < siblings.length; i++) {
-            if (siblings[i] === el) break;
-            if (
-              siblings[i].classList.contains("is-visible") ||
-              siblings[i].classList.contains("is-queued")
-            ) {
-              if (!siblings[i].hasAttribute("data-delay")) {
-                visibleCount++;
-              }
-            }
-          }
-
-          el.classList.add("is-queued");
-
-          if (el.hasAttribute("data-delay")) {
-            el.style.setProperty(
-              "--anim-delay",
-              `${el.getAttribute("data-delay")}ms`
-            );
-          } else {
-            const customStagger = section.getAttribute("data-stagger") || (section.closest("[data-stagger]") && section.closest("[data-stagger]").getAttribute("data-stagger"));
-            const stagger = customStagger ? parseInt(customStagger, 10) : 120;
-            
-            el.style.setProperty(
-              "--anim-delay",
-              `${visibleCount * stagger}ms`
-            );
-          }
-
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              el.classList.add("is-visible");
-              obs.unobserve(el);
-            });
-          });
-        });
-      },
-      {
-        rootMargin: "0px 0px 80px 0px",
-        threshold: 0.02,
-      },
-    );
-
-    setTimeout(() => {
-      animEls.forEach((el) => obs.observe(el));
-    }, 60);
-  }
+  // Scroll reveal — minimal IntersectionObserver, fires once per element
+  const revealObs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        revealObs.unobserve(entry.target);
+      });
+    },
+    { rootMargin: "0px 0px -40px 0px", threshold: 0 }
+  );
+  document.querySelectorAll(".anim-on-scroll").forEach((el) => revealObs.observe(el));
 
   // Stats counter animation (IntersectionObserver — fires once, no scroll listener)
   const statNumbers = document.querySelectorAll(".stats__number[data-count]");
@@ -370,5 +305,19 @@ document.addEventListener("DOMContentLoaded", function () {
       { threshold: 0 },
     );
     stickyObs.observe(heroSection);
+  }
+
+  // Marquee pause when off-screen (IntersectionObserver)
+  const marqueeTrack = document.querySelector(".billing__marquee-track");
+  if (marqueeTrack) {
+    const marqueeObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          marqueeTrack.style.animationPlayState = entry.isIntersecting ? "running" : "paused";
+        });
+      },
+      { threshold: 0 },
+    );
+    marqueeObs.observe(marqueeTrack.closest(".billing__marquee") || marqueeTrack);
   }
 });

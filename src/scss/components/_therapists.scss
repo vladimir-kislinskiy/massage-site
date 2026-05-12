@@ -59,6 +59,11 @@
       padding-left: 24px;
       position: relative;
 
+      // CSS stagger for scroll reveal
+      @for $i from 1 through 8 {
+        &:nth-child(#{$i}) { --reveal-delay: #{($i - 1) * 0.05}s; }
+      }
+
       &::before {
         content: "✓";
         position: absolute;
